@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zach Latta - Founder of Hack Club | Inspiring the Next Generation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --tech-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-bg: #0a0a0b;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --accent-color: #00ff88;
+            --glow-color: rgba(0, 255, 136, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 87, 108, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            33% { opacity: 0.8; transform: scale(1.1) rotate(120deg); }
+            66% { opacity: 0.9; transform: scale(0.9) rotate(240deg); }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: float 8s linear infinite;
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { filter: brightness(1) drop-shadow(0 0 20px rgba(102, 126, 234, 0.3)); }
+            100% { filter: brightness(1.2) drop-shadow(0 0 40px rgba(102, 126, 234, 0.6)); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .mission-statement {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            background: var(--tech-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Graphics Container */
+        .graphics-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .circuit-svg {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            opacity: 0.1;
+            animation: rotate 30s linear infinite;
+        }
+
+        .circuit-svg:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .circuit-svg:nth-child(2) {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: -15s;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Code Block Animation */
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px var(--glow-color);
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            animation: scanLine 3s linear infinite;
+        }
+
+        @keyframes scanLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .code-line {
+            color: var(--accent-color);
+            margin: 0.5rem 0;
+            opacity: 0;
+            animation: typeWriter 0.5s ease-out forwards;
+        }
+
+        .code-line:nth-child(1) { animation-delay: 0.5s; }
+        .code-line:nth-child(2) { animation-delay: 1s; }
+        .code-line:nth-child(3) { animation-delay: 1.5s; }
+
+        @keyframes typeWriter {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Interactive Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--tech-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: var(--card-bg);
+            margin: 5rem 0;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .email-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .email-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Signature */
+        .signature {
+            text-align: center;
+            padding: 3rem 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 3rem 1rem;
+            }
+            
+            .feature-card {
+                padding: 2rem;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+        }
+
+        /* CSS Animation for Interactive Elements */
+        .interactive-icon {
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* SVG Graphics */
+        .tech-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0 0 10px var(--glow-color));
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation"></div>
+    
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="graphics-container">
+            <!-- Circuit Board Graphics -->
+            <svg class="circuit-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#00ff88;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.3" />
+                    </linearGradient>
+                </defs>
+                <path d="M20,20 L180,20 L180,180 L20,180 Z" fill="none" stroke="url(#circuitGradient)" stroke-width="2"/>
+                <circle cx="50" cy="50" r="8" fill="url(#circuitGradient)"/>
+                <circle cx="150" cy="50" r="8" fill="url(#circuitGradient)"/>
+                <circle cx="50" cy="150" r="8" fill="url(#circuitGradient)"/>
+                <circle cx="150" cy="150" r="8" fill="url(#circuitGradient)"/>
+                <path d="M50,50 L150,50 M100,50 L100,150 M50,150 L150,150" stroke="url(#circuitGradient)" stroke-width="3"/>
+            </svg>
+            
+            <svg class="circuit-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100,20 L100,180 M20,100 L180,100" stroke="url(#circuitGradient)" stroke-width="2"/>
+                <circle cx="100" cy="60" r="6" fill="url(#circuitGradient)"/>
+                <circle cx="100" cy="140" r="6" fill="url(#circuitGradient)"/>
+                <circle cx="60" cy="100" r="6" fill="url(#circuitGradient)"/>
+                <circle cx="140" cy="100" r="6" fill="url(#circuitGradient)"/>
+            </svg>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">Hey there! I'm Zach! <span class="interactive-icon">👋</span></h1>
+            <p class="hero-subtitle">Founder of Hack Club</p>
+            <p class="mission-statement">
+                "Our mission is to help as many teenagers as possible fall in love with computers and electronics."
+            </p>
+            
+            <div class="code-block">
+                <div class="code-line">const passion = "computers + creativity";</div>
+                <div class="code-line">const mission = "inspire_teenagers()";</div>
+                <div class="code-line">const result = life_changing_experiences;</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features-grid">
+        <div class="feature-card">
+            <svg class="tech-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="iconGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#4facfe" />
+                        <stop offset="100%" style="stop-color:#00f2fe" />
+                    </linearGradient>
+                </defs>
+                <rect x="20" y="30" width="60" height="40" rx="5" fill="none" stroke="url(#iconGradient1)" stroke-width="3"/>
+                <rect x="30" y="40" width="40" height="3" fill="url(#iconGradient1)"/>
+                <rect x="30" y="50" width="25" height="3" fill="url(#iconGradient1)"/>
+                <rect x="30" y="60" width="35" height="3" fill="url(#iconGradient1)"/>
+                <circle cx="70" cy="55" r="3" fill="url(#iconGradient1)"/>
+            </svg>
+            <h3 class="feature-title">Creative Expression</h3>
+            <p class="feature-description">
+                Discovering computers as tools for creation completely changed my life. 
+                I finally found a way to express myself and bring ideas to reality.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <svg class="tech-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="iconGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea" />
+                        <stop offset="100%" style="stop-color:#764ba2" />
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="30" r="15" fill="none" stroke="url(#iconGradient2)" stroke-width="3"/>
+                <path d="M50,45 L35,60 L50,75 L65,60 Z" fill="none" stroke="url(#iconGradient2)" stroke-width="3"/>
+                <circle cx="35" cy="60" r="8" fill="url(#iconGradient2)"/>
+                <circle cx="65" cy="60" r="8" fill="url(#iconGradient2)"/>
+                <circle cx="50" cy="75" r="8" fill="url(#iconGradient2)"/>
+            </svg>
+            <h3 class="feature-title">Community Building</h3>
+            <p class="feature-description">
+                Through Hack Club, I'm helping others on their journey of discovery, 
+                building a community where teenagers can explore technology together.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <svg class="tech-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="iconGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f093fb" />
+                        <stop offset="100%" style="stop-color:#f5576c" />
+                    </linearGradient>
+                </defs>
+                <path d="M30,50 L45,35 L55,45 L70,30" fill="none" stroke="url(#iconGradient3)" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="30" cy="50" r="5" fill="url(#iconGradient3)"/>
+                <circle cx="45" cy="35" r="5" fill="url(#iconGradient3)"/>
+                <circle cx="55" cy="45" r="5" fill="url(#iconGradient3)"/>
+                <circle cx="70" cy="30" r="5" fill="url(#iconGradient3)"/>
+                <rect x="25" y="65" width="50" height="8" rx="4" fill="url(#iconGradient3)"/>
+            </svg>
+            <h3 class="feature-title">Transformative Learning</h3>
+            <p class="feature-description">
+                Learning to code is life-changing. It opens up infinite possibilities 
+                and gives you the power to build anything you can imagine.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2 class="contact-title">Let's Connect! <span class="interactive-icon">🚀</span></h2>
+        <p style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 1.1rem;">
+            Feel free to reach out and share your journey!
+        </p>
+        <a href="mailto:zach@zachlatta.com" class="email-link">
+            📧 zach@zachlatta.com
+        </a>
+    </section>
+
+    <!-- Signature -->
+    <footer class="signature">
+        <p>The lack of CSS is intentional.</p>
+        <p style="margin-top: 1rem; font-weight: 600;">- Zach</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+            (Just kidding about the CSS part! 😄)
+        </p>
+    </footer>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles when page loads
+        window.addEventListener('load', () => {
+            createParticles();
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px) scale(1.03)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Smooth scrolling for any internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add typing effect to code lines
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing animation when visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const codeLines = entry.target.querySelectorAll('.code-line');
+                    codeLines.forEach((line, index) => {
+                        setTimeout(() => {
+                            const text = line.textContent;
+                            typeWriter(line, text);
+                        }, index * 500);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const codeBlock = document.querySelector('.code-block');
+        if (codeBlock) {
+            observer.observe(codeBlock);
+        }
+    </script>
+</body>
+</html>
